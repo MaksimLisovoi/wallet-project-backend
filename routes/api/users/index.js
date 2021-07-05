@@ -6,6 +6,6 @@ const guard = require("../../../helpers/guard");
 router.get("/current", guard, cntr.getCurrent);
 router.post("/signup", cntr.signup);
 router.post("/login", cntr.login);
-router.post("/logout", cntr.logout);
+router.post("/logout", guard, cntr.logout);
 
 module.exports = router;
