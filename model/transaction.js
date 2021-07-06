@@ -15,9 +15,9 @@ const TransactionSchema = new Schema(
     },
     category: {
       type: String,
-      enum: Categories,
-      default: Categories[0],
-      required: [true, `Category is required in ${Categories}`],
+      enum: [...Categories.expense, ...Categories.income],
+      default: Categories.income[0],
+      required: [true, `Category is required`],
     },
     owner: {
       type: SchemaTypes.ObjectId,

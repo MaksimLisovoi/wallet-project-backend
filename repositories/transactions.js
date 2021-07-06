@@ -16,13 +16,22 @@ const listTransactions = async (userId, query) => {
   });
   return results;
 };
-const getLastTransaction = async (userId) => {
-  const results = await Transaction.find({ owner: userId }).sort({
+
+const getCurrentBalance = async (userId) => {
+  let lastTransaction = await Transaction.find({ owner: userId }).sort({
     createdAt: -1,
   });
-
-  return results[0];
+  console.log("lastTransaction", lastTransaction);
+  return lastTransaction[0] ? lastTransaction[0].balance : 0;
 };
+
+// const getLastTransaction = async (userId) => {
+//   const results = await Transaction.find({ owner: userId }).sort({
+//     createdAt: -1,
+//   });
+
+//   return results[0];
+// };
 
 const addTransaction = async (userId, body, balance) => {
   const result = await Transaction.create({ owner: userId, ...body, balance });
@@ -32,7 +41,7 @@ const addTransaction = async (userId, body, balance) => {
 module.exports = {
   addTransaction,
   listTransactions,
-  getLastTransaction,
+  getCurrentBalance,
 };
 
 // const getById = async (userId, id) => {

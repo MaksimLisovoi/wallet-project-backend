@@ -1,5 +1,5 @@
 const Transaction = require("../repositories/transactions");
-const { HttpCode } = require("../helpers/constants");
+const { HttpCode, Categories } = require("../helpers/constants");
 /////////////////////ТУТ ВЕСЬ КОД ПЕРЕРОБИТИ!!!!!!!!!!!!!!!!ПОКИ ЯК ЗАГЛУШКА!!!!!!!!!!!
 
 const getAll = async (req, res, next) => {
@@ -36,10 +36,23 @@ const create = async (req, res, next) => {
       });
     }
 
-    let balance = 0;
-    let lastTransaction = await Transaction.getLastTransaction(userId);
-    balance = lastTransaction ? lastTransaction.balance : 0;
-    // console.log("1111111111", balance);
+    //фильтр на соответствие категории типу +/-
+
+    if (
+      (req.body.type === "minus" &&
+        !Categories.expense.includes(req.body.category)) ||
+      (req.body.type !== "minus" &&
+        !Categories.income.includes(req.body.category))
+    ) {
+      return res.status(HttpCode.CONFLICT).json({
+        status: "error",
+        code: HttpCode.CONFLICT,
+        message: "category does not match type",
+      });
+    }
+
+    let balance = await Transaction.getCurrentBalance(userId);
+    console.log("1111111111", balance);
     balance =
       req.body.type === "minus"
         ? (balance -= Number(req.body.sum))
@@ -62,11 +75,10 @@ const create = async (req, res, next) => {
     next(e);
   }
 };
+
 const getBalance = async (req, res, next) => {
   try {
-    const userId = req.user.id;
-    const lastTransaction = await Transaction.getLastTransaction(userId);
-    let balance = lastTransaction ? lastTransaction.balance : 0;
+    let balance = await Transaction.getCurrentBalance(req.user.id);
     console.log(balance);
     return res.status(HttpCode.OK).json({
       status: "success",
