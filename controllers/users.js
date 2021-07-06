@@ -60,31 +60,31 @@ const logout = async (req, res, next) => {
   }
 };
 
-const update = async (req, res, next) => {
-  try {
-    const userId = req.user.id;
-    if (JSON.stringify(req.body) === "{}") {
-      return res.status(201).json({ message: "missing field" });
-    }
-    const { id, email, name } = await Users.findById(userId);
-    const updated = await Users.updateSub(userId, req.body);
-    if (updated) {
-      return res.json({
-        status: "success",
-        code: HttpCode.OK,
-        message: "User updated.",
-        data: { id, email, name },
-      });
-    }
-    return res.json({
-      status: "error",
-      code: HttpCode.NOT_FOUND,
-      message: "Not found.",
-    });
-  } catch (e) {
-    next(e);
-  }
-};
+// const update = async (req, res, next) => {
+//   try {
+//     const userId = req.user.id;
+//     if (JSON.stringify(req.body) === "{}") {
+//       return res.status(201).json({ message: "missing field" });
+//     }
+//     const { id, email, name } = await Users.findById(userId);
+//     const updated = await Users.updateSub(userId, req.body);
+//     if (updated) {
+//       return res.json({
+//         status: "success",
+//         code: HttpCode.OK,
+//         message: "User updated.",
+//         data: { id, email, name },
+//       });
+//     }
+//     return res.json({
+//       status: "error",
+//       code: HttpCode.NOT_FOUND,
+//       message: "Not found.",
+//     });
+//   } catch (e) {
+//     next(e);
+//   }
+// };
 
 const getCurrent = async (req, res, next) => {
   try {
@@ -92,7 +92,7 @@ const getCurrent = async (req, res, next) => {
     const { email, name } = req.user;
     console.log(req.user);
     await Users.findById(id);
-    return res.json({
+    return res.status(HttpCode.OK).json({
       status: "OK",
       code: HttpCode.OK,
       data: { email, name },
@@ -102,4 +102,4 @@ const getCurrent = async (req, res, next) => {
   }
 };
 
-module.exports = { signup, login, logout, update, getCurrent };
+module.exports = { signup, login, logout, getCurrent };

@@ -1,45 +1,54 @@
-/////////////////////ТУТ ВЕСЬ КОД ПЕРЕРОБИТИ!!!!!!!!!!!!!!!!ПОКИ ЯК ЗАГЛУШКА!!!!!!!!!!!
+// const { array } = require("joi");
+const { Schema, model, SchemaTypes } = require("mongoose");
+const mongoosePaginate = require("mongoose-paginate-v2");
+const { Categories } = require("../helpers/constants");
 
-// const { Schema, model, SchemaTypes } = require("mongoose");
-// const mongoosePaginate = require("mongoose-paginate-v2");
-// const contactSchema = new Schema(
-//   {
-//    categories: {
-//  type: String,
-//   enum: Categories,
-//  default: Categories[0],
-// },
-//     owner: {
-//       type: SchemaTypes.ObjectId,
-//       ref: "user",
-//     },
-//     favorite: {
-//       type: Boolean,
-//       default: false,
-//     },
-//     features: {
-//       type: Array,
-//       set: (data) => (!data ? [] : data),
-//     },
-//   },
-//   {
-//     versionKey: false,
-//     timestamps: true,
-//     toJSON: {
-//       virtuals: true,
-//       transform: function (doc, ret) {
-//         delete ret._id;
-//         return ret;
-//       },
-//     },
-//     toObject: { virtuals: true },
-//   }
-// );
+const TransactionSchema = new Schema(
+  {
+    date: {
+      type: Date,
+      required: [true, "Date is required."],
+    },
+    type: {
+      type: String,
+      required: [true, "Type is required."],
+    },
+    category: {
+      type: String,
+      enum: Categories,
+      default: Categories[0],
+      required: [true, `Category is required in ${Categories}`],
+    },
+    owner: {
+      type: SchemaTypes.ObjectId,
+      ref: "user",
+    },
+    comment: { type: String },
+    sum: {
+      type: Number,
+      min: 0,
+      required: [true, "Sum is required."],
+    },
+    balance: {
+      type: Number,
+      required: [true, "Sum is required."],
+    },
+  },
+  {
+    versionKey: false,
+    timestamps: true,
+    // toJSON: {
+    //   virtuals: true,
+    //   transform: function (doc, ret) {
+    //     delete ret._id;
+    //     return ret;
+    //   },
+    // },
+    // toObject: { virtuals: true },
+  }
+);
 
-// contactSchema.virtual("virtualGlory").get(function () {
-//   return `Can be given to the glory of Óðinn if his name is ${this.name}`;
-// });
-// contactSchema.plugin(mongoosePaginate);
-// const Contact = model("contact", contactSchema);
+TransactionSchema.plugin(mongoosePaginate);
+const Transaction = model("transactions", TransactionSchema);
 
-// module.exports = Contact;
+module.exports = Transaction;

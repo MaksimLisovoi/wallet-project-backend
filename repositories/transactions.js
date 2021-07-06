@@ -1,27 +1,10 @@
-const Contact = require("../model/transaction");
+const Transaction = require("../model/transaction");
 
-/////////////////////ТУТ ВЕСЬ КОД ПЕРЕРОБИТИ!!!!!!!!!!!!!!!!ПОКИ ЯК ЗАГЛУШКА!!!!!!!!!!!
-
-const listContacts = async (userId, query) => {
-  // const results = await Contact.find({ owner: userId }).populate({
-  //   path: 'owner',
-  //   select: ' email subscription -_id',
-  // })
-
-  const {
-    sortBy,
-    sortByDesc,
-    filter,
-    favorites = null,
-    limit = 20,
-    offset = 0,
-  } = query;
+const listTransactions = async (userId, query) => {
+  const { sortBy, sortByDesc, filter, limit = 20, offset = 0 } = query;
 
   const optionsSearch = { owner: userId };
-  if (favorites !== null) {
-    optionsSearch.favorite = favorites;
-  }
-  const results = await Contact.paginate(optionsSearch, {
+  const results = await Transaction.paginate(optionsSearch, {
     limit,
     offset,
     sort: {
@@ -29,42 +12,38 @@ const listContacts = async (userId, query) => {
       ...(sortByDesc ? { [`${sortByDesc}`]: -1 } : {}),
     },
     select: filter ? filter.split("|").join(" ") : "",
-    populate: { path: "owner", select: " email subscription" },
+    populate: { path: "owner", select: "name email" },
   });
   return results;
 };
-
-const getContactById = async (userId, id) => {
-  const result = await Contact.findOne({ _id: id, owner: userId }).populate({
-    path: "owner",
-    select: "email subscription",
+const getLastTransaction = async (userId) => {
+  const results = await Transaction.find({ owner: userId }).sort({
+    createdAt: -1,
   });
-  return result;
+
+  return results[0];
 };
 
-const removeContact = async (userId, id) => {
-  const result = await Contact.findOneAndRemove({ _id: id, owner: userId });
-  return result;
-};
-
-const addContact = async (userId, body) => {
-  const result = await Contact.create({ owner: userId, ...body });
-  return result;
-};
-
-const updateContact = async (userId, id, body) => {
-  const result = await Contact.findOneAndUpdate(
-    { _id: id, owner: userId },
-    { ...body },
-    { new: true }
-  );
+const addTransaction = async (userId, body, balance) => {
+  const result = await Transaction.create({ owner: userId, ...body, balance });
   return result;
 };
 
 module.exports = {
-  listContacts,
-  getContactById,
-  removeContact,
-  addContact,
-  updateContact,
+  addTransaction,
+  listTransactions,
+  getLastTransaction,
 };
+
+// const getById = async (userId, id) => {
+//   const result = await Transaction.findOne({ _id: id, owner: userId }).populate({
+//     path: "owner",
+//     select: "email name",
+//   });
+//   return result;
+// };
+
+// const remove = async (userId, id) => {
+//   const result = await Transaction.findOneAndRemove({ _id: id, owner: userId });
+//   return result;
+// };
