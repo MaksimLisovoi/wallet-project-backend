@@ -1,6 +1,5 @@
 const Transaction = require("../repositories/transactions");
 const { HttpCode, Categories } = require("../helpers/constants");
-/////////////////////ТУТ ВЕСЬ КОД ПЕРЕРОБИТИ!!!!!!!!!!!!!!!!ПОКИ ЯК ЗАГЛУШКА!!!!!!!!!!!
 
 const getAll = async (req, res, next) => {
   try {
@@ -36,7 +35,7 @@ const create = async (req, res, next) => {
       });
     }
 
-    //фильтр на соответствие категории типу +/-
+    //////////фильтр на соответствие категории типу +/-
 
     if (
       (req.body.type === "minus" &&
@@ -50,14 +49,14 @@ const create = async (req, res, next) => {
         message: "category does not match type",
       });
     }
-
+    //////////////////getBalance
     let balance = await Transaction.getCurrentBalance(userId);
     console.log("1111111111", balance);
     balance =
       req.body.type === "minus"
         ? (balance -= Number(req.body.sum))
         : (balance += Number(req.body.sum));
-
+    ////////////////////
     const transaction = await Transaction.addTransaction(
       userId,
       req.body,
