@@ -89,10 +89,53 @@ const getBalance = async (req, res, next) => {
   }
 };
 
-const getStatistic = async (req, res, next) => {};
+const getStatistic = async (req, res, next) => {
+  try {
+    const month = Number(req.query.month);
+    const year = Number(req.query.year);
+
+    const entryDate = new Date(year, month, 1);
+    let stopDate = new Date(year, month + 1, 1);
+    stopDate.setMilliseconds(stopDate.getMilliseconds() - 1);
+
+    let statistic = await Transaction.getStatisticsTransactions(
+      req.user.id,
+      entryDate,
+      stopDate
+    );
+    console.log("statistic", statistic);
+    if (!statistic.length) {
+      return res.status(HttpCode.NOT_FOUND).json({
+        status: "error",
+        code: HttpCode.NOT_FOUND,
+        message: "no transactions for this month",
+      });
+    }
+    return res.status(HttpCode.OK).json({
+      status: "success",
+      code: HttpCode.OK,
+      data: statistic,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+const getCategories = (req, res, next) => {
+  try {
+    return res.status(HttpCode.OK).json({
+      status: "success",
+      code: HttpCode.OK,
+      data: Categories,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
 
 module.exports = {
   getAll,
   create,
   getBalance,
+  getStatistic,
+  getCategories,
 };
