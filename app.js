@@ -38,3 +38,7 @@ process.on("unhandledRejection", (reason, promise) => {
 });
 
 module.exports = app;
+
+// console.log(new Date(2021, 6, 10));
+// const date = new Date("Mon Dec 03 2018 11:16:53 GMT+0300");
+// console.log(date);

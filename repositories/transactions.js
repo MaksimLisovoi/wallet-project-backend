@@ -1,5 +1,4 @@
 const Transaction = require("../model/transaction");
-
 const listTransactions = async (userId, query) => {
   const { sortBy, sortByDesc, filter, limit = 20, offset = 0 } = query;
 
@@ -25,16 +24,16 @@ const getCurrentBalance = async (userId) => {
   return lastTransaction[0] ? lastTransaction[0].balance : 0;
 };
 
-// const getLastTransaction = async (userId) => {
-//   const results = await Transaction.find({ owner: userId }).sort({
-//     createdAt: -1,
-//   });
-
-//   return results[0];
-// };
-
 const addTransaction = async (userId, body, balance) => {
   const result = await Transaction.create({ owner: userId, ...body, balance });
+  return result;
+};
+
+const getStatisticsTransactions = async (userId, entryDate, stopDate) => {
+  const result = await Transaction.find({
+    owner: userId,
+    date: { $gte: entryDate, $lte: stopDate },
+  });
   return result;
 };
 
@@ -42,6 +41,7 @@ module.exports = {
   addTransaction,
   listTransactions,
   getCurrentBalance,
+  getStatisticsTransactions,
 };
 
 // const getById = async (userId, id) => {
