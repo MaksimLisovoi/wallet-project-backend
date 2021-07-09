@@ -92,7 +92,7 @@ const getCurrent = async (req, res, next) => {
     const { email, name } = req.user;
     console.log(req.user);
     await Users.findById(id);
-    return res.json({
+    return res.status(HttpCode.OK).json({
       status: "OK",
       code: HttpCode.OK,
       data: { email, name },
@@ -102,4 +102,4 @@ const getCurrent = async (req, res, next) => {
   }
 };
 
-module.exports = { signup, login, logout, update, getCurrent };
+module.exports = { signup, login, logout, getCurrent, update };
