@@ -6,7 +6,7 @@ const schemaCreateTransaction = Joi.object({
   type: Joi.string().required(),
   category: Joi.string().required(),
   comments: Joi.string().optional(),
-  sum: Joi.string().required(),
+  sum: Joi.number().min(1).required(),
 });
 
 const validate = async (schema, req, next) => {

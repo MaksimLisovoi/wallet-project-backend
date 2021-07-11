@@ -28,9 +28,9 @@ const create = async (req, res, next) => {
       !req.body.category ||
       !req.body.sum
     ) {
-      return res.status(HttpCode.CREATED).json({
-        status: "success",
-        code: HttpCode.CREATED,
+      return res.status(HttpCode.BAD_REQUEST).json({
+        status: "error",
+        code: HttpCode.BAD_REQUEST,
         message: "missing required field",
       });
     }

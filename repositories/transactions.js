@@ -43,16 +43,3 @@ module.exports = {
   getCurrentBalance,
   getStatisticsTransactions,
 };
-
-// const getById = async (userId, id) => {
-//   const result = await Transaction.findOne({ _id: id, owner: userId }).populate({
-//     path: "owner",
-//     select: "email name",
-//   });
-//   return result;
-// };
-
-// const remove = async (userId, id) => {
-//   const result = await Transaction.findOneAndRemove({ _id: id, owner: userId });
-//   return result;
-// };

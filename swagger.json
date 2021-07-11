@@ -211,6 +211,68 @@
           }
         }
       }
+    },
+    "/transactions": {
+      "post": {
+        "tags": ["Transactions"],
+        "summary": "Creating a transaction",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Transaction's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTransactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTransactionResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Bad request (invalid request body)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseFail"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseError"
+                }
+              }
+            }
+          },
+
+          "409": {
+            "description": "Email in use",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationResponseConflict"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -253,7 +315,7 @@
             "type": "object",
             "properties": {
               "userId": {
-                "type": "number",
+                "type": "string",
                 "description": "User's id",
                 "example": "60eafde331f472359c212139"
               },
@@ -298,8 +360,7 @@
           },
           "message": {
             "type": "string",
-            "description": "message error",
-            "example": "Email in use"
+            "description": "message error"
           }
         },
 
@@ -307,7 +368,7 @@
           {
             "status": "error",
             "code": 409,
-            "message": "Email in use"
+            "message": "string"
           }
         ]
       },
@@ -334,7 +395,7 @@
           {
             "status": "error",
             "code": 400,
-            "message": "Unexpected end of JSON input"
+            "message": "message error"
           }
         ]
       },
@@ -353,8 +414,7 @@
           },
           "message": {
             "type": "string",
-            "description": "message error",
-            "example": "user validation failed: password: Password is required"
+            "description": "message error"
           }
         },
 
@@ -485,6 +545,122 @@
             "data": {
               "email": "test@i.ua",
               "name": "test"
+            }
+          }
+        ]
+      },
+      "CreateTransactionRequest": {
+        "type": "object",
+        "required": ["date", "type", "category", "sum"],
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Transaction's date",
+            "format": "date"
+          },
+          "type": {
+            "type": "string",
+            "description": "Transaction's type"
+          },
+          "category": {
+            "type": "string",
+            "description": "Transaction's category must belong to list",
+            "example": "Доход"
+          },
+          "sum": {
+            "type": "number",
+            "description": "Transaction's amount",
+            "example": 10
+          },
+          "comments": {
+            "type": "string",
+            "description": "Transaction'comments"
+          }
+        }
+      },
+      "CreateTransactionResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "status",
+            "example": "success"
+          },
+          "code": {
+            "type": "number",
+            "description": "code",
+            "example": "201"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "transaction": {
+                "type": "object",
+                "properties": {
+                  "category": {
+                    "type": "string",
+                    "description": "Transaction's category"
+                  },
+                  "_id": {
+                    "type": "string",
+                    "description": "Transaction's id"
+                  },
+                  "owner": {
+                    "type": "string",
+                    "description": "Transaction's owner "
+                  },
+                  "date": {
+                    "type": "string",
+                    "description": "Transaction's date",
+                    "format": "date"
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "Transaction's type"
+                  },
+                  "sum": {
+                    "type": "number",
+                    "description": "Transaction's amount"
+                  },
+                  "balance": {
+                    "type": "number",
+                    "description": "Transaction's balance"
+                  },
+                  "comments": {
+                    "type": "string",
+                    "description": "Transaction's comments"
+                  },
+                  "createdAt": {
+                    "type": "string",
+                    "description": " Transaction creation time"
+                  },
+                  "updatedAt": {
+                    "type": "string",
+                    "description": "Transaction update time"
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "example": [
+          {
+            "status": "success",
+            "code": 201,
+            "data": {
+              "transaction": {
+                "category": "Доход",
+                "_id": "60eb4a0f59ad203048d56f99",
+                "owner": "60eb338e23a0d10d98905aab",
+                "date": "2021-12-30T09:47:39.488Z",
+                "type": "+",
+                "comments": "кот",
+                "sum": 1000,
+                "balance": 3000,
+                "createdAt": "2021-07-11T19:44:15.735Z",
+                "updatedAt": "2021-07-11T19:44:15.735Z"
+              }
             }
           }
         ]
