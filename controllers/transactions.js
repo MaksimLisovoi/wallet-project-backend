@@ -49,19 +49,45 @@ const create = async (req, res, next) => {
         message: "category does not match type",
       });
     }
+
+    //////////////////////// формируем уник дату
+    let date = new Date(req.body.date);
+    let stopDate = new Date(date);
+    stopDate.setDate(stopDate.getDate() + 1);
+    // console.log("date", date);
+    // console.log("stopDate", stopDate);
+
+    const transactionToday = await Transaction.countTransactions(
+      userId,
+      date,
+      stopDate
+    );
+    console.log("transactionToday", transactionToday);
+    date = date.setMilliseconds(date.getMilliseconds() + transactionToday);
+
+    ////////////////////// получаем пред баланс
+    const prevBalance = await Transaction.getPrevBalance(userId, date);
+    const balanceIncrement =
+      req.body.type === "minus" ? -Number(req.body.sum) : Number(req.body.sum);
+    const balance = prevBalance + balanceIncrement;
+    console.log(balanceIncrement);
     //////////////////getBalance
-    let balance = await Transaction.getCurrentBalance(userId);
-    console.log("1111111111", balance);
-    balance =
-      req.body.type === "minus"
-        ? (balance -= Number(req.body.sum))
-        : (balance += Number(req.body.sum));
+    // let balance = await Transaction.getCurrentBalance(userId);
+    // balance =
+    //   req.body.type === "minus"
+    //     ? (balance -= Number(req.body.sum))
+    //     : (balance += Number(req.body.sum));
     ////////////////////
     const transaction = await Transaction.addTransaction(
       userId,
       req.body,
+      date,
       balance
     );
+    ///////////////////////// пересчет послед балансов
+    await Transaction.balanceUpdate(userId, date, balanceIncrement);
+    //////////////////////////
+
     return res.status(HttpCode.CREATED).json({
       status: "success",
       code: HttpCode.CREATED,
