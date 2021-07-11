@@ -32,7 +32,7 @@ const addTransaction = async (userId, body, balance) => {
 const getStatisticsTransactions = async (userId, entryDate, stopDate) => {
   const result = await Transaction.find({
     owner: userId,
-    date: { $gte: entryDate, $lte: stopDate },
+    date: { $gte: entryDate, $lt: stopDate },
   });
   return result;
 };

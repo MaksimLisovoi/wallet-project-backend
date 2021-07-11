@@ -95,8 +95,8 @@ const getStatistic = async (req, res, next) => {
     const year = Number(req.query.year);
 
     const entryDate = new Date(year, month, 1);
-    let stopDate = new Date(year, month + 1, 1);
-    stopDate.setMilliseconds(stopDate.getMilliseconds() - 1);
+    const stopDate = new Date(year, month + 1, 1);
+    // stopDate.setMilliseconds(stopDate.getMilliseconds() - 1);
 
     let statistic = await Transaction.getStatisticsTransactions(
       req.user.id,
