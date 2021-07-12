@@ -90,7 +90,6 @@ const getCurrent = async (req, res, next) => {
   try {
     const id = req.user.id;
     const { email, name } = req.user;
-    console.log(req.user);
     await Users.findById(id);
     return res.status(HttpCode.OK).json({
       status: "OK",

@@ -10,7 +10,6 @@ const findByEmail = async (email) => {
 
 const create = async (body) => {
   const user = new User(body);
-  console.log(user, "user");
   return await user.save();
 };
 
