@@ -5,10 +5,10 @@ const guard = require("../../../helpers/guard");
 
 const { validationCreateTransaction } = require("./validate");
 
-router.use((req, res, next) => {
-  console.log(req.url);
-  next();
-});
+// router.use((req, res, next) => {
+//   console.log(req.url);
+//   next();
+// });
 
 router
   .get("/", guard, ctrl.getAll)

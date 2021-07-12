@@ -1,12 +1,12 @@
-const Joi = require("joi");
-// const mongoose = require("mongoose");
+const Joi = require("joi").extend(require("@joi/date"));
+const { HttpCode } = require("../../../helpers/constants");
 
 const schemaCreateTransaction = Joi.object({
-  date: Joi.date().required(),
+  date: Joi.date().format("YYYY-MM-DD").required(),
   type: Joi.string().required(),
   category: Joi.string().required(),
   comments: Joi.string().optional(),
-  sum: Joi.string().required(),
+  sum: Joi.number().min(0).required(),
 });
 
 const validate = async (schema, req, next) => {
@@ -15,7 +15,7 @@ const validate = async (schema, req, next) => {
     next();
   } catch (err) {
     next({
-      status: 400,
+      status: HttpCode.BAD_REQUEST,
       message: err.message.replace(/"/g, ""),
     });
   }
@@ -25,14 +25,4 @@ module.exports = {
   validationCreateTransaction: (req, res, next) => {
     return validate(schemaCreateTransaction, req.body, next);
   },
-  //   validateMongoId: (req, res, next) => {
-  //     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-  //       return next({
-  //         status: 400,
-  //         message: "Invalid ObjectId",
-  //       });
-  //     }
-
-  //     next();
-  //   },
 };

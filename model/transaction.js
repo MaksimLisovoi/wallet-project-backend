@@ -1,4 +1,3 @@
-// const { array } = require("joi");
 const { Schema, model, SchemaTypes } = require("mongoose");
 const mongoosePaginate = require("mongoose-paginate-v2");
 const { Categories } = require("../helpers/constants");
@@ -23,7 +22,7 @@ const TransactionSchema = new Schema(
       type: SchemaTypes.ObjectId,
       ref: "user",
     },
-    comment: { type: String },
+    comments: { type: String },
     sum: {
       type: Number,
       min: 0,
@@ -37,14 +36,6 @@ const TransactionSchema = new Schema(
   {
     versionKey: false,
     timestamps: true,
-    // toJSON: {
-    //   virtuals: true,
-    //   transform: function (doc, ret) {
-    //     delete ret._id;
-    //     return ret;
-    //   },
-    // },
-    // toObject: { virtuals: true },
   }
 );
 
