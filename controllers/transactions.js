@@ -89,7 +89,7 @@ const getBalance = async (req, res, next) => {
   try {
     let balance = await Transaction.getCurrentBalance(req.user.id);
     return res.status(HttpCode.OK).json({
-      status: "success",
+      status: "OK",
       code: HttpCode.OK,
       data: balance,
     });
@@ -120,7 +120,7 @@ const getStatistic = async (req, res, next) => {
       });
     }
     return res.status(HttpCode.OK).json({
-      status: "success",
+      status: "OK",
       code: HttpCode.OK,
       data: statistic,
     });
@@ -131,7 +131,7 @@ const getStatistic = async (req, res, next) => {
 const getCategories = (req, res, next) => {
   try {
     return res.status(HttpCode.OK).json({
-      status: "success",
+      status: "OK",
       code: HttpCode.OK,
       data: Categories,
     });
