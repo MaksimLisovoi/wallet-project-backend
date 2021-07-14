@@ -1,4 +1,4 @@
-### Wallet API
+# Wallet API
 
 ## Wallet application to control your finances
 
@@ -6,19 +6,19 @@
 
 ## Team
 
-# Back
+### Back
 
   <ul>
       <li>Morrash</li>
   </ul>
 
-# Front
+### Front
 
  <ul>
       <li>Leness</li> <li>Максим</li> <li>N1NJA</li> <li>Jaims</li> <li>Iryna</li> <li>rom</li> <li>Tetiana</li>
   </ul>
 
-# Scripts
+## Scripts
 
 - `npm start` &mdash; старт сервера в режиме production
 - `npm run start:dev` &mdash; старт сервера в режиме разработки (development)
