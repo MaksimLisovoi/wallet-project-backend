@@ -455,6 +455,101 @@
             }
           }
         }
+      },
+      "get": {
+        "tags": ["Transactions"],
+        "summary": "Show all user transactions",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "sortBy",
+            "required": false,
+            "type": "string",
+            "description": "sorting"
+          },
+          {
+            "in": "query",
+            "name": "sortByDesc",
+            "required": false,
+            "type": "string",
+            "description": "reverse sorting"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "string",
+            "description": "offset"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "string",
+            "description": "transaction limit"
+          },
+          {
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "type": "string",
+            "description": "filter by keys. If you split several filters: '|'"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/allTransactionResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Bad request (invalid request body)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseFail"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseError"
+                }
+              }
+            }
+          },
+          "/transactions": {},
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFound"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -626,6 +721,11 @@
           "data": {
             "type": "object",
             "properties": {
+              "id": {
+                "type": "string",
+                "description": "User's id",
+                "example": "60eafde331f472359c212139"
+              },
               "email": {
                 "type": "string",
                 "description": "User's email",
@@ -645,8 +745,9 @@
             "status": "OK",
             "code": 200,
             "data": {
-              "email": "test@i.ua",
-              "name": "test"
+              "id": "60ec8d5b9cab330da47db679",
+              "email": "Azura@i.ua",
+              "name": "Azura"
             }
           }
         ]
@@ -938,6 +1039,188 @@
                 "createdAt": "2021-07-11T19:44:15.735Z",
                 "updatedAt": "2021-07-11T19:44:15.735Z"
               }
+            }
+          }
+        ]
+      },
+      "allTransactionResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "status",
+            "example": "OK"
+          },
+          "code": {
+            "type": "number",
+            "description": "code",
+            "example": "200"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "transactions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "category": {
+                      "type": "string",
+                      "description": "Transaction's category"
+                    },
+                    "_id": {
+                      "type": "string",
+                      "description": "Transaction's id"
+                    },
+                    "owner": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "User's name",
+                          "example": "test"
+                        },
+                        "_id": {
+                          "type": "string",
+                          "description": "User's's id"
+                        },
+                        "email": {
+                          "type": "string",
+                          "description": "User's email",
+                          "format": "email"
+                        }
+                      },
+                      "description": "Transaction's owner "
+                    },
+                    "date": {
+                      "type": "string",
+                      "description": "Transaction's date",
+                      "format": "date"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Transaction's type"
+                    },
+                    "comments": {
+                      "type": "string",
+                      "description": "Transaction's comments"
+                    },
+                    "sum": {
+                      "type": "number",
+                      "description": "Transaction's amount"
+                    },
+                    "balance": {
+                      "type": "number",
+                      "description": "Transaction's balance"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "description": " Transaction creation time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "description": "Transaction update time"
+                    }
+                  }
+                }
+              },
+              "totalDocs": {
+                "type": "number",
+                "description": "total documents",
+                "example": "2"
+              },
+              "offset": {
+                "type": "number",
+                "description": "offset",
+                "example": "2"
+              },
+              "limit": {
+                "type": "number",
+                "description": "transaction limit",
+                "example": "2"
+              },
+              "totalPages": {
+                "type": "number",
+                "description": "total pages",
+                "example": "1"
+              },
+              "page": {
+                "type": "number",
+                "description": "current pages",
+                "example": "1"
+              },
+              "pagingCounter": {
+                "type": "number",
+                "description": "paging counter",
+                "example": "1"
+              },
+              "hasPrevPage": {
+                "type": "boolean",
+                "example": false
+              },
+              "hasNextPage": {
+                "type": "boolean",
+                "example": false
+              },
+              "prevPage": {
+                "type": "number"
+              },
+              "nextPage": {
+                "type": "number"
+              }
+            }
+          }
+        },
+
+        "example": [
+          {
+            "status": "success",
+            "code": 200,
+            "data": {
+              "transactions": [
+                {
+                  "category": "Доход",
+                  "_id": "60ec8da19cab330da47db67a",
+                  "owner": {
+                    "name": "Azura",
+                    "_id": "60ec8d5b9cab330da47db679",
+                    "email": "Azura@i.ua"
+                  },
+                  "date": "2021-07-12T00:00:00.000Z",
+                  "type": "+",
+                  "comments": "работа",
+                  "sum": 1000,
+                  "balance": 1000,
+                  "createdAt": "2021-07-12T18:44:49.939Z",
+                  "updatedAt": "2021-07-12T18:44:49.939Z"
+                },
+                {
+                  "category": "Доход",
+                  "_id": "60ed97b565425c0bbc3c5d73",
+                  "owner": {
+                    "name": "Azura",
+                    "_id": "60ec8d5b9cab330da47db679",
+                    "email": "Azura@i.ua"
+                  },
+                  "date": "2021-07-12T00:00:00.001Z",
+                  "type": "+",
+                  "comments": "работа",
+                  "sum": 1000,
+                  "balance": 2000,
+                  "createdAt": "2021-07-13T13:40:05.149Z",
+                  "updatedAt": "2021-07-13T13:40:05.149Z"
+                }
+              ],
+              "totalDocs": 2,
+              "offset": 0,
+              "limit": 20,
+              "totalPages": 1,
+              "page": 1,
+              "pagingCounter": 1,
+              "hasPrevPage": false,
+              "hasNextPage": false,
+              "prevPage": null,
+              "nextPage": null
             }
           }
         ]

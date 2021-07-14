@@ -88,13 +88,12 @@ const update = async (req, res, next) => {
 
 const getCurrent = async (req, res, next) => {
   try {
-    const id = req.user.id;
-    const { email, name } = req.user;
+    const { id, email, name } = req.user;
     await Users.findById(id);
     return res.status(HttpCode.OK).json({
       status: "OK",
       code: HttpCode.OK,
-      data: { email, name },
+      data: { id, email, name },
     });
   } catch (e) {
     next(e);
