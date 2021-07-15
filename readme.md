@@ -1,6 +1,6 @@
 # Wallet API
 
-## Wallet application to control your finances
+Wallet application to control your finances
 
 [Wallet API Documentation](https://wallet-team-project.herokuapp.com/api/api-docs/)
 
@@ -9,18 +9,22 @@
 ### Back
 
   <ul>
-      <li>Morrash</li>
+      <li>[Olena @Morrash](https://github.com/ElenaKononenko)</li>
   </ul>
 
 ### Front
 
  <ul>
-      <li>Leness</li> <li>Максим</li> <li>N1NJA</li> <li>Jaims</li> <li>Iryna</li> <li>rom</li> <li>Tetiana</li>
+      <li>[*Olena*  @Leness](https://github.com/leness)</li>
+      <li>[*Iryna*](https://github.com/Iryna1320)</li>
+      <li>(*Tetiana*) (https://github.com/Tetiana-Lykhovei)</li>
+      <li>[*Maksim*](https://github.com/MaksimLisovoi)</li>
+      <li>[*Artem* @N1NJA](https://github.com/Matviienko-Artem)</li>
+      <li>[*Eugene* @Jaims](https://github.com/Eugene-36)</li> 
+      <li>[*Roman* @rom](https://github.com/Roman-Y-K)</li>
   </ul>
 
 ## Scripts
 
-- `npm start` &mdash; старт сервера в режиме production
-- `npm run start:dev` &mdash; старт сервера в режиме разработки (development)
-- `npm run lint` &mdash; запустить выполнение проверки кода с eslint, необходимо выполнять перед каждым PR и исправлять все ошибки линтера
-- `npm lint:fix` &mdash; та же проверка линтера, но с автоматическими исправлениями простых ошибок
+- `npm start` &mdash; starting the server in production mode
+- `npm run start:dev` &mdash; starting the server in development mode

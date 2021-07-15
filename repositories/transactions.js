@@ -1,4 +1,5 @@
 const Transaction = require("../model/transaction");
+
 const listTransactions = async (userId, query) => {
   const { sortBy, sortByDesc, filter, limit = 20, offset = 0 } = query;
 
