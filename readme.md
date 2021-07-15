@@ -8,6 +8,10 @@ Wallet application to control your finances
 
 ## Team
 
+:star2: Teamlead: [Maksim](https://github.com/MaksimLisovoi)
+
+:star2: Scrum-master: [Olena @Leness](https://github.com/leness)
+
 ### Back
 
 :star: [Olena @Morrash](https://github.com/ElenaKononenko)
@@ -20,13 +24,11 @@ Wallet application to control your finances
 
 :star: [Tetiana](https://github.com/Tetiana-Lykhovei)
 
-:star: [Maksim](https://github.com/MaksimLisovoi)
+:star: [Artem](https://github.com/Matviienko-Artem)
 
-:star: [Artem @N1NJA](https://github.com/Matviienko-Artem)
+:star: [Eugene](https://github.com/Eugene-36)
 
-:star: [Eugene @Jaims](https://github.com/Eugene-36)
-
-:star: [Roman @rom](https://github.com/Roman-Y-K)
+:star: [Roman](https://github.com/Roman-Y-K)
 
 ## Scripts
 
