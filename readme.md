@@ -1,6 +1,8 @@
-![Wallet](./wallet.png)
+![banner](./node.jpg)
 
-# Wallet API
+# <img src="./node.jpg" width="600">
+
+# ![Wallet](./wallet.png) Wallet API
 
 Wallet application to control your finances
 
