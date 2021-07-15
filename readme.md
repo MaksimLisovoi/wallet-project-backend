@@ -8,16 +8,22 @@ Wallet application to control your finances
 
 ### Back
 
-[_Olena_ @Morrash](https://github.com/ElenaKononenko)
+[Olena @Morrash](https://github.com/ElenaKononenko)
 
 ### Front
 
 [Olena @Leness](https://github.com/leness)
+
 [Iryna](https://github.com/Iryna1320)
+
 [Tetiana](https://github.com/Tetiana-Lykhovei)
+
 [Maksim](https://github.com/MaksimLisovoi)
+
 [Artem @N1NJA](https://github.com/Matviienko-Artem)
+
 [Eugene @Jaims](https://github.com/Eugene-36)
+
 [Roman @rom](https://github.com/Roman-Y-K)
 
 ## Scripts
