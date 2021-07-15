@@ -1,8 +1,10 @@
+![Wallet](./wallet.png)
+
 # Wallet API
 
 Wallet application to control your finances
 
-[Wallet API Documentation](https://wallet-team-project.herokuapp.com/api/api-docs/)
+:wrench: [Wallet API Documentation](https://wallet-team-project.herokuapp.com/api/api-docs/)
 
 ## Team
 
