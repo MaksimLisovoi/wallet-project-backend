@@ -281,7 +281,7 @@
         }
       }
     },
-    "/transactions/сategories": {
+    "/transactions/categories": {
       "get": {
         "tags": ["Categories"],
         "summary": "Transaction categories",

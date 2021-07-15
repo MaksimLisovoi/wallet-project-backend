@@ -1,16 +1,16 @@
 {
   "name": "wallet",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./bin/server.js",
     "start:dev": "cross-env NODE_ENV=development nodemon ./bin/server.js",
     "lint": "eslint **/*.js",
     "lint:fix": "eslint --fix **/*.js"
   },
+  "author": "Team3",
+  "license": "MIT",
   "keywords": [
-    "example",
-    "heroku"
+    "wallet"
   ],
   "dependencies": {
     "@joi/date": "^2.1.0",

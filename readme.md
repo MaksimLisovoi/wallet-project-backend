@@ -1,26 +1,36 @@
-# Wallet API
+# <img src="./node.jpg" width="200">
 
-## Wallet application to control your finances
+# ![Wallet](./wallet.png) Wallet API
 
-[Wallet API Documentation](https://wallet-team-project.herokuapp.com/api/api-docs/)
+Wallet application to control your finances
+
+:wrench: [Wallet API Documentation](https://wallet-team-project.herokuapp.com/api/api-docs/)
 
 ## Team
 
+:star2: Teamlead: [Maksim](https://github.com/MaksimLisovoi)
+
+:star2: Scrum-master: [Olena @Leness](https://github.com/leness)
+
 ### Back
 
-  <ul>
-      <li>Morrash</li>
-  </ul>
+:star: [Olena @Morrash](https://github.com/ElenaKononenko)
 
 ### Front
 
- <ul>
-      <li>Leness</li> <li>Максим</li> <li>N1NJA</li> <li>Jaims</li> <li>Iryna</li> <li>rom</li> <li>Tetiana</li>
-  </ul>
+:star: [Olena @Leness](https://github.com/leness)
+
+:star: [Iryna](https://github.com/Iryna1320)
+
+:star: [Tetiana](https://github.com/Tetiana-Lykhovei)
+
+:star: [Artem](https://github.com/Matviienko-Artem)
+
+:star: [Eugene](https://github.com/Eugene-36)
+
+:star: [Roman](https://github.com/Roman-Y-K)
 
 ## Scripts
 
-- `npm start` &mdash; старт сервера в режиме production
-- `npm run start:dev` &mdash; старт сервера в режиме разработки (development)
-- `npm run lint` &mdash; запустить выполнение проверки кода с eslint, необходимо выполнять перед каждым PR и исправлять все ошибки линтера
-- `npm lint:fix` &mdash; та же проверка линтера, но с автоматическими исправлениями простых ошибок
+- `npm start` &mdash; starting the server in production mode
+- `npm run start:dev` &mdash; starting the server in development mode
