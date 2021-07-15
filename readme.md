@@ -8,23 +8,23 @@ Wallet application to control your finances
 
 ### Back
 
-[Olena @Morrash](https://github.com/ElenaKononenko)
+:star: [Olena @Morrash](https://github.com/ElenaKononenko)
 
 ### Front
 
-[Olena @Leness](https://github.com/leness)
+:star: [Olena @Leness](https://github.com/leness)
 
-[Iryna](https://github.com/Iryna1320)
+:star: [Iryna](https://github.com/Iryna1320)
 
-[Tetiana](https://github.com/Tetiana-Lykhovei)
+:star: [Tetiana](https://github.com/Tetiana-Lykhovei)
 
-[Maksim](https://github.com/MaksimLisovoi)
+:star: [Maksim](https://github.com/MaksimLisovoi)
 
-[Artem @N1NJA](https://github.com/Matviienko-Artem)
+:star: [Artem @N1NJA](https://github.com/Matviienko-Artem)
 
-[Eugene @Jaims](https://github.com/Eugene-36)
+:star: [Eugene @Jaims](https://github.com/Eugene-36)
 
-[Roman @rom](https://github.com/Roman-Y-K)
+:star: [Roman @rom](https://github.com/Roman-Y-K)
 
 ## Scripts
 
