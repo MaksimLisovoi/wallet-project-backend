@@ -1,4 +1,4 @@
-# <img src="./node.jpg" width="300">
+# <img src="./node.jpg" width="200">
 
 # ![Wallet](./wallet.png) Wallet API
 
