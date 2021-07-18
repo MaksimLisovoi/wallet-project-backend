@@ -125,7 +125,7 @@
           }
         },
         "responses": {
-          "201": {
+          "200": {
             "description": "Successful operation",
             "content": {
               "application/json": {
@@ -686,6 +686,21 @@
                 "type": "string",
                 "description": "token",
                 "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTg3YWI0ZWM4OTQzMmI1NGNhOTllMSIsImlhdCI6MTYyNjAxNTM4NCwiZXhwIjoxNjI2MDIyNTg0fQ.w1PY6aFbH2vTmHPlrNwNrSbk3LTy2aBqEvEOG1K4238"
+              },
+              "id": {
+                "type": "string",
+                "description": "User's id",
+                "example": "60eafde331f472359c212139"
+              },
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "format": "email"
+              },
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "test"
               }
             }
           }
