@@ -711,7 +711,10 @@
             "status": "OK",
             "code": 200,
             "data": {
-              "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTg3YWI0ZWM4OTQzMmI1NGNhOTllMSIsImlhdCI6MTYyNjAxNTM4NCwiZXhwIjoxNjI2MDIyNTg0fQ.w1PY6aFbH2vTmHPlrNwNrSbk3LTy2aBqEvEOG1K4238"
+              "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZWM4ZDViOWNhYjMzMGRhNDdkYjY3OSIsImlhdCI6MTYyNjYzMzM0MywiZXhwIjoxNjI2NjQwNTQzfQ.AG_dAU6me1LJ4F8rYVQ9yQkWu4W6K7ZXg5KjzC0k35E",
+              "id": "60ec8d5b9cab330da47db679",
+              "email": "Azura@i.ua",
+              "name": "Azura"
             }
           }
         ]
