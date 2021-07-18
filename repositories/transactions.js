@@ -42,13 +42,14 @@ const getStatisticsTransactions = async (userId, entryDate, stopDate) => {
   return result;
 };
 
-const countTransactions = async (userId, entryDate, stopDate) => {
-  const result = await Transaction.countDocuments({
+const getLastTransactionDateInPeriod = async (userId, entryDate, stopDate) => {
+  const result = await Transaction.find({
     owner: userId,
     date: { $gte: entryDate, $lt: stopDate },
-  });
-  return result;
+  }).sort({ date: -1 });
+  return result[0] ? result[0].date : 0;
 };
+
 const getPrevBalance = async (userId, date) => {
   let prevTransaction = await Transaction.find({
     owner: userId,
@@ -63,12 +64,19 @@ const balanceUpdate = async (userId, date, increment) => {
     { $inc: { balance: increment } }
   );
 };
+
+const deleteTransaction = async (userId, id) => {
+  const result = await Transaction.findOneAndDelete({ _id: id, owner: userId });
+  return result;
+};
+
 module.exports = {
   addTransaction,
   listTransactions,
   getCurrentBalance,
   getStatisticsTransactions,
-  countTransactions,
+  getLastTransactionDateInPeriod,
   getPrevBalance,
   balanceUpdate,
+  deleteTransaction,
 };

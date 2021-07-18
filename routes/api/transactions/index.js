@@ -7,7 +7,8 @@ const { validationCreateTransaction } = require("./validate");
 
 router
   .get("/", guard, ctrl.getAll)
-  .post("/", guard, validationCreateTransaction, ctrl.create);
+  .post("/", guard, validationCreateTransaction, ctrl.create)
+  .delete("/:id", guard, ctrl.remove);
 router.get("/balance", guard, ctrl.getBalance);
 router.get("/statistic", guard, ctrl.getStatistic);
 router.get("/categories", ctrl.getCategories);
