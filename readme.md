@@ -4,7 +4,7 @@
 
 Wallet application to control your finances
 
-:wrench: [Wallet API Documentation](https://wallet-team-project.herokuapp.com/api/api-docs/)
+:wrench: [Wallet API Documentation](https://wallet-team-project.herokuapp.com/api-docs/)
 
 ## Team
 
