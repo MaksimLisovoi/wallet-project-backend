@@ -43,7 +43,8 @@ const login = async (req, res, next) => {
     return res.json({
       status: "OK",
       code: HttpCode.OK,
-      data: { token, user: { id, email, name } },
+      token,
+      user: { id, email, name },
     });
   } catch (e) {
     next(e);
