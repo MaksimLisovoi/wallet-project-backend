@@ -737,15 +737,10 @@
             "description": "code",
             "example": "200"
           },
-          "data": {
-            "type": "object",
-            "properties": {
-              "token": {
-                "type": "string",
-                "description": "token",
-                "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTg3YWI0ZWM4OTQzMmI1NGNhOTllMSIsImlhdCI6MTYyNjAxNTM4NCwiZXhwIjoxNjI2MDIyNTg0fQ.w1PY6aFbH2vTmHPlrNwNrSbk3LTy2aBqEvEOG1K4238"
-              }
-            }
+          "token": {
+            "type": "string",
+            "description": "token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTg3YWI0ZWM4OTQzMmI1NGNhOTllMSIsImlhdCI6MTYyNjAxNTM4NCwiZXhwIjoxNjI2MDIyNTg0fQ.w1PY6aFbH2vTmHPlrNwNrSbk3LTy2aBqEvEOG1K4238"
           },
           "user": {
             "type": "object",
@@ -773,13 +768,11 @@
           {
             "status": "OK",
             "code": 200,
-            "data": {
-              "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZjQ4ZmRhOGIyNjg0MmM2ODk5ZTY1NiIsImlhdCI6MTYyNjY5NDExNCwiZXhwIjoxNjI2NzAxMzE0fQ.lKBXKK7ZPjF7QOtqPcf9I5JaR3bn92cUz5FnZ-dB2SM"
-            },
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZjQ4ZmRhOGIyNjg0MmM2ODk5ZTY1NiIsImlhdCI6MTYyNjcyNDgwNywiZXhwIjoxNjI2NzMyMDA3fQ.zhnkQcUcjIKJhX-p3C0fkWofdUjsCm0P-NlYEtPsAxQ",
             "user": {
               "id": "60f48fda8b26842c6899e656",
-              "email": "A@i.ua",
-              "name": "Aa"
+              "email": "Azura@i.ua",
+              "name": "Azura"
             }
           }
         ]
