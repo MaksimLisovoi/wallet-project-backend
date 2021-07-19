@@ -551,6 +551,62 @@
           }
         }
       }
+    },
+    "delete": {
+      "tags": ["Transactions"],
+      "summary": "Deleting a transaction",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "type": "string",
+          "description": "id"
+        }
+      ],
+      "security": [{ "Bearer": [] }],
+      "responses": {
+        "200": {
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/deleteTransactionResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Bad request (invalid request body)",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResponseError"
+              }
+            }
+          }
+        },
+        "401": {
+          "description": "Unauthorized",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Unauthorized"
+              }
+            }
+          }
+        },
+        "404": {
+          "description": "Not Found",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotFound"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1240,6 +1296,33 @@
               "prevPage": null,
               "nextPage": null
             }
+          }
+        ]
+      },
+      "deleteTransactionResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "status",
+            "example": "OK"
+          },
+          "code": {
+            "type": "number",
+            "description": "code",
+            "example": "200"
+          },
+          "message": {
+            "type": "string",
+            "description": "Transaction deleted"
+          }
+        },
+
+        "example": [
+          {
+            "status": "OK",
+            "code": 200,
+            "message": "Transaction deleted"
           }
         ]
       },

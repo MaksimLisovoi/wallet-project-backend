@@ -1,18 +1,6 @@
 const Transaction = require("../repositories/transactions");
 const { HttpCode, Categories } = require("../helpers/constants");
 
-const filterByType = (type, category) => {
-  if (
-    (type === "minus" && !Categories.expense.includes(category)) ||
-    (type !== "minus" && !Categories.income.includes(category))
-  ) {
-    return res.status(HttpCode.CONFLICT).json({
-      status: "error",
-      code: HttpCode.CONFLICT,
-      message: "category does not match type",
-    });
-  }
-};
 const getAll = async (req, res, next) => {
   try {
     const userId = req.user.id;
@@ -46,18 +34,33 @@ const create = async (req, res, next) => {
       });
     }
 
-    filterByType(req.body.type, req.body.category);
+    if (
+      (req.body.type === "minus" &&
+        !Categories.expense.includes(req.body.category)) ||
+      (req.body.type !== "minus" &&
+        !Categories.income.includes(req.body.category))
+    ) {
+      return res.status(HttpCode.CONFLICT).json({
+        status: "error",
+        code: HttpCode.CONFLICT,
+        message: "category does not match type",
+      });
+    }
 
     let date = new Date(req.body.date);
     let stopDate = new Date(date);
     stopDate.setDate(stopDate.getDate() + 1);
 
-    const transactionToday = await Transaction.countTransactions(
+    const prevTime = await Transaction.getLastTransactionDateInPeriod(
       userId,
       date,
       stopDate
     );
-    date = date.setMilliseconds(date.getMilliseconds() + transactionToday);
+
+    if (prevTime) {
+      date = new Date(prevTime);
+      date = date.setMilliseconds(date.getMilliseconds() + 1);
+    }
 
     const prevBalance = await Transaction.getPrevBalance(userId, date);
     const balanceIncrement =
@@ -76,6 +79,42 @@ const create = async (req, res, next) => {
       status: "success",
       code: HttpCode.CREATED,
       data: { transaction },
+    });
+  } catch (e) {
+    if (e.name === "ValidationError") {
+      e.status = HttpCode.BAD_REQUEST;
+    }
+    next(e);
+  }
+};
+
+const remove = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const userId = req.user.id;
+    const delTransaction = await Transaction.deleteTransaction(userId, id);
+    if (!delTransaction) {
+      return res.status(HttpCode.NOT_FOUND).json({
+        status: "error",
+        code: HttpCode.NOT_FOUND,
+        message: "Transaction not found",
+      });
+    }
+    const balanceIncrement =
+      delTransaction.type === "minus"
+        ? Number(delTransaction.sum)
+        : -Number(delTransaction.sum);
+
+    await Transaction.balanceUpdate(
+      userId,
+      delTransaction.date,
+      balanceIncrement
+    );
+
+    return res.status(HttpCode.OK).json({
+      status: "OK",
+      code: HttpCode.OK,
+      message: "Transaction deleted",
     });
   } catch (e) {
     if (e.name === "ValidationError") {
@@ -146,4 +185,5 @@ module.exports = {
   getBalance,
   getStatistic,
   getCategories,
+  remove,
 };
