@@ -19,7 +19,7 @@ const listTransactions = async (userId, query) => {
 
 const getCurrentBalance = async (userId) => {
   let lastTransaction = await Transaction.find({ owner: userId }).sort({
-    createdAt: -1,
+    date: -1,
   });
   return lastTransaction[0] ? lastTransaction[0].balance : 0;
 };
