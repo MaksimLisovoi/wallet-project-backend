@@ -151,13 +151,13 @@ const getStatistic = async (req, res, next) => {
       stopDate
     );
 
-    if (!statistic.length) {
-      return res.status(HttpCode.NOT_FOUND).json({
-        status: "error",
-        code: HttpCode.NOT_FOUND,
-        message: "no transactions for this month",
-      });
-    }
+    // if (!statistic.length) {
+    //   return res.status(HttpCode.NOT_FOUND).json({
+    //     status: "error",
+    //     code: HttpCode.NOT_FOUND,
+    //     message: "no transactions for this month",
+    //   });
+    // }
     return res.status(HttpCode.OK).json({
       status: "OK",
       code: HttpCode.OK,
