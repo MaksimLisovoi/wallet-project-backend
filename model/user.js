@@ -2,7 +2,6 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require("bcryptjs");
 require("dotenv").config();
 let SALT_WORK_FACTOR = process.env.SALT_WORK_FACTOR;
-SALT_WORK_FACTOR = 10;
 const userSchema = new Schema({
   password: {
     type: String,
