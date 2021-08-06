@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nodejs
+    container_name: wallet-api
+    depends_on:
+      - team3
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "4000:4000"
+    networks:
+      - app-network
+  team3:
+    image: "mongo"
+    container_name: team3db
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
