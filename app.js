@@ -8,7 +8,7 @@ require("dotenv").config();
 const app = express();
 
 const corsOptions = {
-  origin: "https://wallet-app-project-nn33mm.netlify.app",
+  origin: "http://localhost:3000",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
