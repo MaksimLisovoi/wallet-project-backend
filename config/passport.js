@@ -1,8 +1,8 @@
 const passport = require("passport");
-const { Strategy: JwtStrategy, ExtractJwt } = require("passport-jwt");
+// const { Strategy: JwtStrategy, ExtractJwt } = require("passport-jwt");
 
-// const JwtStrategy = require("passport-jwt").Strategy;
-// const ExtractJwt = require("passport-jwt").ExtractJwt;
+const JwtStrategy = require("passport-jwt").Strategy;
+const ExtractJwt = require("passport-jwt").ExtractJwt;
 require("dotenv").config();
 const secretOrKey = process.env.SECRET_KEY;
 const Users = require("../repositories/users");
