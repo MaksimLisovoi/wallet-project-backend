@@ -31,5 +31,3 @@ process.on("SIGINT", async () => {
 });
 
 module.exports = db;
-
-// mongodb+srv://my1user:bestYear2021@mycluster0.hsukk.mongodb.net/test?authSource=admin&replicaSet=atlas-88pyga-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true
