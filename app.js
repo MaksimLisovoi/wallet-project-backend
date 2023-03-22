@@ -7,27 +7,31 @@ require("dotenv").config();
 
 const app = express();
 
+// const corsOptions = {
+//   origin: "http://localhost:3000",
+//   credentials: true, //access-control-allow-credentials:true
+//   optionSuccessStatus: 200,
+// };
+
+// app.use(cors(corsOptions));
+
+app.use(cors(), function (req, res, next) {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://wallet-app-project-nn33mm.netlify.app"
+    // "http://localhost:3000"
+  ); // update to match the domain you will make the request from//
+  res.header("Access-Control-Allow-Headers", "*");
+  res.header("Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.use(helmet());
 // app.use(cors());
 app.use(express.json());
 app.use(boolParser());
 
 app.use("/", require("./routes/api"));
-
-app.use(cors(), function (req, res, next) {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://wallet-app-project-nn33mm.netlify.app/"
-  ); // update to match the domain you will make the request from//
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
-
-// res.setHeader("Access-Control-Allow-Origin", "*");
-// res.setHeader("Access-Control-Allow-Headers", "origin, content-type, accept");
 
 app.use((req, res) => {
   res
