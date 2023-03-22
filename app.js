@@ -14,6 +14,18 @@ app.use(boolParser());
 
 app.use("/", require("./routes/api"));
 
+app.use(cors(), function (req, res, next) {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://wallet-team-project.herokuapp.com"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 app.use((req, res) => {
   res
     .status(HttpCode.NOT_FOUND)
