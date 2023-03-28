@@ -3,13 +3,16 @@ require("dotenv").config({ path: __dirname + "/.env" });
 
 const uriDb = process.env.URI_DB;
 
-const db = mongoose.connect(uriDb, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-  poolSize: 5,
-});
+const db = mongoose.connect(
+  "mongodb+srv://my1user:bestYear2021@mycluster0.hsukk.mongodb.net/test?authSource=admin&replicaSet=atlas-88pyga-shard-0&readPreference=primary&ssl=true",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    poolSize: 5,
+  }
+);
 
 mongoose.connection.on("connected", () => {
   console.log("Database connection successful");
