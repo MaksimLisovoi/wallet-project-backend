@@ -1,8 +1,8 @@
+require("dotenv").config();
 const Users = require("../repositories/users");
 const { HttpCode } = require("../helpers/constants");
 const jwt = require("jsonwebtoken");
-require("dotenv").config();
-// const keys = require("../keys");
+
 const secretOrKey = process.env.SECRET_KEY;
 
 const signup = async (req, res, next) => {
