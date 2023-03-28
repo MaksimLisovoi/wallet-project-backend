@@ -1,4 +1,6 @@
-require("dotenv").config();
+require("dotenv").config({
+  path: __dirname + "../.env",
+});
 
 const mongoose = require("mongoose");
 
@@ -9,7 +11,6 @@ const db = mongoose.connect(uriDb, {
   useUnifiedTopology: true,
   useCreateIndex: true,
   useFindAndModify: false,
-  poolSize: 5,
 });
 
 mongoose.connection.on("connected", () => {
